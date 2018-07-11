@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SimpleDrawer.Drawing;
 
+
 namespace SimpleDrawer
 {
     /// <summary>
@@ -24,10 +25,42 @@ namespace SimpleDrawer
         public MainWindow()
         {
             InitializeComponent();
+
+            mass = new byte[16,16*4];
+            for (int j = 0; j < 16; j++)
+            {
+                for (int i = 0; i < 16 * 4; i++)
+                {
+                    if (i % 4 == 3 || i % 4 == 2)
+                        mass[j, i] = 0xFF;
+                }
+            }
         }
 
+        byte[,] mass;
+        int x = 0;
+        int y = 0;
+        int dx = 1;
+        int dy = 1;
         protected override void MainLoop(object state, EventArgs eventArgs)
         {
+            Clear();
+            Draw(mass, x, y);
+                    
+            x += dx;                        
+            y += dy;
+
+            if (x >= 640 || x <= 0)
+            {
+                dx = dx * -1;
+            }
+
+            if (y >= 480 || y <= 0)
+            {
+                dy = dy * -1;
+            }
+
+
             // Метод вызывается по таймеру, все рисование происходит здесь.
             // Для рисования можно вызывать перегруженный метод Draw(...),
             // первая перегрузка которого использует одномерный массив, вторая - двумерный.

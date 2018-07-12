@@ -76,7 +76,7 @@ namespace SimpleDrawer.Drawing
             for (int i = 0; i < sprite.Length; i += stride, y++)
             {
                 if (y >= Bitmap.PixelHeight)
-                    return;
+                    break;
                 var destinationIndex = x * BytesPerPixel + y * Stride;
                 var count = x * BytesPerPixel + stride > Stride ? Stride - x * BytesPerPixel : stride;
                 Buffer.BlockCopy(sprite, i, ImageArray, destinationIndex, count < 0 ? 0 : count);

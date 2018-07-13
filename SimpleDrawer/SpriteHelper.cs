@@ -13,9 +13,9 @@ namespace SimpleDrawer
         {
             var image = new BitmapImage(uri);
             // Array containing pixels data
-            var buffer = new byte[image.PixelHeight * image.PixelHeight * bytesPerPixel];
+            var buffer = new byte[64 *64 * 4];
             // Bytes per 1 row of image
-            var stride = image.PixelWidth * bytesPerPixel;
+            var stride = 64 *4;
             // Write pixels to array
             image.CopyPixels(image.SourceRect, buffer, stride, 0);
             return buffer;

@@ -26,17 +26,19 @@ namespace SimpleDrawer
         {
             InitializeComponent();
 
-            mass = new byte[16,16*4];
-            for (int j = 0; j < 16; j++)
-            {
-                for (int i = 0; i < 16 * 4; i++)
-                {
-                    if (i % 4 == 3 || i % 4 == 2)
-                        mass[j, i] = 0xFF;
-                }
-            }
+            //       mass = new byte[16,16*4];
+            //      for (int j = 0; j < 16; j++)
+            //       {
+            //           for (int i = 0; i < 16 * 4; i++)
+            //           {
+            //               if (i % 4 == 3 || i % 4 == 2)
+            //                   mass[j, i] = 0xFF;
+            //           }
+            //       }
+            
+    
         }
-
+        byte[] image = SpriteHelper.LoadImage(@"142.jpg");
         byte[,] mass;
         int x = 0;
         int y = 0;
@@ -45,7 +47,7 @@ namespace SimpleDrawer
         protected override void MainLoop(object state, EventArgs eventArgs)
         {
             Clear();
-            Draw(mass, x, y);
+            Draw(image, 256, x, y);
                     
             x += dx;                        
             y += dy;

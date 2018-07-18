@@ -21,15 +21,15 @@ namespace SimpleDrawer.Drawing
 
         #region Private and protected members
 
-        private readonly DispatcherTimer _mainLoopTimer;
-
-        protected readonly WriteableBitmap Bitmap;
+        private readonly DispatcherTimer _mainLoopTimer;           
         protected readonly Int32Rect Rect;
         protected readonly int BytesPerPixel;
         protected readonly int Stride;
         protected readonly byte[] ImageArray;
 
         #endregion
+
+        public readonly WriteableBitmap Bitmap;
 
         public DrawerWindow(int bitmapWidth = 640, int bitmapHeight = 480,
             DispatcherPriority priority = DispatcherPriority.Normal)

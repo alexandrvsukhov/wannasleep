@@ -71,7 +71,7 @@ namespace SimpleDrawer.Drawing
         /// <param name="stride">sprite's stride (bytes per row)</param>
         /// <param name="x">x coordinate</param>
         /// <param name="y">y coordinate</param>
-        protected virtual void Draw(byte[] sprite, int stride, int x, int y)
+        public virtual void Draw(byte[] sprite, int stride, int x, int y)
         {
             for (int i = 0; i < sprite.Length; i += stride, y++)
             {
@@ -90,7 +90,7 @@ namespace SimpleDrawer.Drawing
         /// <param name="sprite">sprite to draw</param>
         /// <param name="x">x coordinate</param>
         /// <param name="y">y coordinate</param>
-        protected virtual void Draw(byte[,] sprite, int x, int y)
+        public virtual void Draw(byte[,] sprite, int x, int y)
         {
             var spriteDim0 = sprite.GetLength(0);
             var spriteDim1 = sprite.GetLength(1);

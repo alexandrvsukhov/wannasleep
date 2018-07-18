@@ -26,51 +26,25 @@ namespace SimpleDrawer
         {
             InitializeComponent();
 
-            //       mass = new byte[16,16*4];
-            //      for (int j = 0; j < 16; j++)
-            //       {
-            //           for (int i = 0; i < 16 * 4; i++)
-            //           {
-            //               if (i % 4 == 3 || i % 4 == 2)
-            //                   mass[j, i] = 0xFF;
-            //           }
-            //       }
-            
-    
+           
+            elements[0] = new VisualElement(@"142.jpg", this) { x =0 , y = 0 };
+            elements[1] = new VisualElement(@"142.jpg", this) { x = 100, y = 100};
+            elements[2] = new VisualElement(@"142.jpg", this) { x = 300, y = 300 } ;            
+
         }
-        byte[] image = SpriteHelper.LoadImage(@"142.jpg");
-        byte[,] mass;
-        int x = 0;
-        int y = 0;
-        int dx = 1;
-        int dy = 1;
+
+        VisualElement[] elements = new VisualElement[3];
+    
+
         protected override void MainLoop(object state, EventArgs eventArgs)
         {
             Clear();
-            Draw(image, 256, x, y);
-                    
-            x += dx;                        
-            y += dy;
-
-            if (x >= 640 || x <= 0)
+            foreach (VisualElement element in elements)
             {
-                dx = dx * -1;
+                element.Draw();
+                element.Delta();
             }
-
-            if (y >= 480 || y <= 0)
-            {
-                dy = dy * -1;
-            }
-
-
-            // Метод вызывается по таймеру, все рисование происходит здесь.
-            // Для рисования можно вызывать перегруженный метод Draw(...),
-            // первая перегрузка которого использует одномерный массив, вторая - двумерный.
-            // Для одномерного нужно указать stride - количество байт на строку
-            // Метод Clear() очищает картинку
-
-            // для кодирования цвета пикселя используется формат bgra32, т.е. 4 байта на пиксель,
-            // голубой, зеленый, красный, альфа-канал (прозрачность, 0xFF - полностью непрозрачный)
+            
         }
 
         protected override Image TargetImage => DrawerImage;

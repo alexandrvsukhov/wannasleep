@@ -26,10 +26,10 @@ namespace SimpleDrawer
         {
             InitializeComponent();
 
-           
-            elements[0] = new VisualElement(@"142.jpg", this) { x =0 , y = 0 };
-            elements[1] = new VisualElement(@"142.jpg", this) { x = 100, y = 100};
-            elements[2] = new VisualElement(@"142.jpg", this) { x = 300, y = 300 } ;            
+
+            elements[0] = new VisualElement(@"red.png", this) { x = 0, y = 0 };
+            elements[1] = new VisualElement(@"green.png", this) { x = 100, y = 100 };
+            elements[2] = new VisualElement(@"blue.png", this) { x = 300, y = 300 };
 
         }
 

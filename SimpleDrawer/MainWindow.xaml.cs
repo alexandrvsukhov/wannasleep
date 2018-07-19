@@ -27,9 +27,9 @@ namespace SimpleDrawer
             InitializeComponent();
 
 
-            elements[0] = new VisualElement(@"C:\Users\суховав\Source\Repos\wannasleep\SimpleDrawer\Drawing\red.png", this) { x = 0, y = 0 };
-            elements[1] = new VisualElement(@"C:\Users\суховав\Source\Repos\wannasleep\SimpleDrawer\Drawing\green.png", this) { x = 100, y = 100 };
-            elements[2] = new VisualElement(@"C:\Users\суховав\Source\Repos\wannasleep\SimpleDrawer\Drawing\blue.png", this) { x = 300, y = 300 };
+            elements[0] = new VisualElement(@"Drawing\red.png", this) { x = 0, y = 0 };
+            elements[1] = new VisualElement(@"Drawing\green.png", this) { x = 100, y = 100 };
+            elements[2] = new VisualElement(@"Drawing\blue.png", this) { x = 300, y = 300 };
 
         }
 

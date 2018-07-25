@@ -27,26 +27,27 @@ namespace SimpleDrawer
             InitializeComponent();
 
 
-            elements[0] = new VisualElement(@"Drawing\red.png", this) { x = 0, y = 0 };
-            elements[1] = new VisualElement(@"Drawing\green.png", this) { x = 100, y = 100 };
-            elements[2] = new VisualElement(@"Drawing\blue.png", this) { x = 300, y = 300 };
+            elements[0] = new SpeedVisualElement(@"Drawing\red.png", this) { X = 10, Y = 10, SpeedX = 2.5, SpeedY = 2.7, BorderBehaviour = BorderBehaviour.StopAtBorder} ;
+            elements[1] = new SpeedVisualElement(@"Drawing\green.png", this) { X = 100, Y = 100, SpeedX = 1, SpeedY = 2, BorderBehaviour = BorderBehaviour.BounceFromBorder };
+            elements[2] = new SpeedVisualElement(@"Drawing\blue.png", this) { X = 300, Y = 300, SpeedX = 1.7, SpeedY = 2.1, BorderBehaviour = BorderBehaviour.BounceFromBorder };
 
         }
 
         VisualElement[] elements = new VisualElement[3];
-    
 
+        int time = 0;
         protected override void MainLoop(object state, EventArgs eventArgs)
         {
             Clear();
             foreach (VisualElement element in elements)
             {
-                element.Draw();
-                element.Delta();
+                element.Draw(time);
             }
-            
+            time++;
         }
 
         protected override Image TargetImage => DrawerImage;
     }
+
+    
 }

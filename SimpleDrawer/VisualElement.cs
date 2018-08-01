@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SimpleDrawer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace SimpleDrawer
         public int Width;
         public int Height;
         MainWindow win;
-        
+
         byte[] LoadImage(Uri uri, int bytesPerPixel)
         {
             var image = new BitmapImage(uri);
@@ -29,7 +30,7 @@ namespace SimpleDrawer
             // Write pixels to array
             image.CopyPixels(image.SourceRect, buffer, stride, 0);
             return buffer;
-            
+
         }
 
         public byte[] LoadImage(string path, int bytesPerPixel = 4)
@@ -40,7 +41,7 @@ namespace SimpleDrawer
         public VisualElement(string path, MainWindow mw)
         {
             pic = LoadImage(path);
-           
+
             win = mw;
         }
 
@@ -48,75 +49,10 @@ namespace SimpleDrawer
         {
             win.Draw(pic, stride, (int)X, (int)Y);
         }
+
+        public virtual void Collide(VisualElement element)
+        {
+        }
+
     }
-    
-    public class SpeedVisualElement : VisualElement
-    {       
-
-        public BorderBehaviour BorderBehaviour { get; set; }
-        public double SpeedX { get; set; }
-        public double SpeedY { get; set; }
-        
-        private int _previousTime;
-        public override void Draw(int time)
-        {
-            CheckBorders();
-            var dtime = time - _previousTime;
-            _previousTime = time;            
-            double dx = dtime * SpeedX;
-            double dy = dtime * SpeedY;
-            X += dx;
-            if (X < 0)
-                X = 0;
-            Y += dy;
-            if (Y < 0)
-                Y = 0;
-            base.Draw(time);            
-        }
-
-        private void CheckBorders()
-        {
-            if (X >= 640 - Width || X <= 0)
-            {
-                if(BorderBehaviour == BorderBehaviour.BounceFromBorder)
-                    SpeedX = SpeedX * -1;
-                else
-                {
-                    SpeedX = 0;
-                    SpeedY = 0;
-                }
-            }
-
-
-            if (Y >= 480 - Height || Y <= 0)
-            {
-                if (BorderBehaviour == BorderBehaviour.BounceFromBorder)
-                    SpeedY = SpeedY * -1;
-                else
-                {
-                    SpeedX = 0;
-                    SpeedY = 0;
-                }
-            }
-        }
-
-        public SpeedVisualElement(string path, MainWindow mw) : base(path, mw)
-        {
-        }
-    }
-
-    //public class RigidBodyVisualElement : SpeedVisualElement
-    //{
-    //    public RigidBodyVisualElement(string path, MainWindow mw) : base(path, mw)
-    //    {
-    //    }
-
-    //    public void Collide(RigidBodyVisualElement element)
-    //    {
-    //        this
-    //        element
-    //    }
-    //}
-
-
 }

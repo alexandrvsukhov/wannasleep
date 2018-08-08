@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace SimpleDrawer
 {
@@ -16,6 +15,7 @@ namespace SimpleDrawer
         public double SpeedX { get; set; }
         public double SpeedY { get; set; }
         private int _previousTime;
+        
 
         public override void Draw(int time)
         {
@@ -24,41 +24,38 @@ namespace SimpleDrawer
             _previousTime = time;
             double dx = dtime * SpeedX;
             double dy = dtime * SpeedY;
-            void Shift(object sender, KeyEventArgs e, VisualElement platform1, VisualElement platform2)
-            {
-                if (e.Alt && e.KeyCode == Keys.D)
-                {
-                    platform1.X += dx;
-                }
-                if (e.Alt && e.KeyCode == Keys.A)
-                {
-                    platform1.X -= dx;
-                }
-            }
-            //X += dx;
-            //if (X < 0)
-            //    X = 0;
-            //Y += dy;
-            //if (Y < 0)
-            //    Y = 0;
+            X += dx;
+            if (X < 0)
+                X = 0;
+            Y += dy;
+            if (Y < 0)
+                Y = 0;
             base.Draw(time);
         }
+        public event EventHandler Scored;
         private void CheckBorders()
         {
-            if (X >= 640 - Width || X <= 0)
+            if (BorderBehaviour == BorderBehaviour.BounceFromBorder)
             {
-                if (BorderBehaviour == BorderBehaviour.BounceFromBorder)
+                 if (X >= 640 - Width || X <= 0)
                     SpeedX = SpeedX * -1;
-                else
-                {
+            }
+                
+            else
+            {
+                if (X >= 640-Width && SpeedX > 0)
                     SpeedX = 0;
-                    SpeedY = 0;
-                }
+                if (X <= 0 && SpeedX < 0)
+                    SpeedX = 0;
             }
             if (Y >= 480 - Height || Y <= 0)
             {
                 if (BorderBehaviour == BorderBehaviour.BounceFromBorder)
+                {
+                    if (Scored != null)
+                        Scored(this, new EventArgs());
                     SpeedY = SpeedY * -1;
+                }
                 else
                 {
                     SpeedX = 0;

@@ -6,9 +6,29 @@
         xmlns:local="clr-namespace:SimpleDrawer"
         xmlns:drawing="clr-namespace:SimpleDrawer.Drawing"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" KeyDown="DrawerWindow_KeyDown" KeyUp="DrawerWindow_KeyUp">
     <Grid>
-        <Image x:Name="DrawerImage"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="15*"/>
+            <ColumnDefinition Width="73*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel>
+            <StackPanel.Resources>
+                <Style TargetType="TextBox">
+                    <Setter Property="Width" Value="64"/>
+                    <Setter Property="Height" Value="64"/>
+                    <Setter Property="Margin" Value="5"/>
+                    <Setter Property="FontSize" Value="48"/>
+                    <Setter Property="TextAlignment" Value="Center"/>                    
+                </Style>
+            </StackPanel.Resources>
+            <TextBox x:Name="TopPlayerScore"></TextBox>
+            <TextBox x:Name="BottomPlayerScore"></TextBox>
+        </StackPanel>
+        <Grid Grid.Column="1" Background="LemonChiffon">
+            <Image x:Name="DrawerImage"/>
+        </Grid>
+        
     </Grid>
 </drawing:DrawerWindow>
 

@@ -21,7 +21,7 @@ namespace SimpleDrawer.Drawing
 
         #region Private and protected members
 
-        private readonly DispatcherTimer _mainLoopTimer;           
+        protected readonly DispatcherTimer _mainLoopTimer;           
         protected readonly Int32Rect Rect;
         protected readonly int BytesPerPixel;
         protected readonly int Stride;

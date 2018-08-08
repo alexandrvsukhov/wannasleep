@@ -27,11 +27,11 @@ namespace SimpleDrawer
             InitializeComponent();
 
             // Платформа 1
-            elements[0] = new SpeedVisualElement(@"Drawing\red.png", this) { X = 10, Y = 10, SpeedX = 2.5, SpeedY = 2.7, BorderBehaviour = BorderBehaviour.StopAtBorder} ;
+            elements[0] = new SpeedVisualElement(@"Drawing\red.png", this) { X = 1, Y = 1, SpeedX = 2, SpeedY = 0, BorderBehaviour = BorderBehaviour.StopAtBorder} ;
             // Шарик
-            elements[1] = new SpeedVisualElement(@"Drawing\green.png", this) { X = 100, Y = 100, SpeedX = 1, SpeedY = 2, BorderBehaviour = BorderBehaviour.BounceFromBorder };
+            elements[1] = new SpeedVisualElement(@"Drawing\green.png", this) { X = 100, Y = 100, SpeedX = 1, SpeedY = 2, BorderBehaviour = BorderBehaviour.BounceFromBorder};
             // Платформа 2
-            elements[2] = new SpeedVisualElement(@"Drawing\blue.png", this) { X = 300, Y = 300, SpeedX = 1.7, SpeedY = 2.1, BorderBehaviour = BorderBehaviour.BounceFromBorder };
+            elements[2] = new SpeedVisualElement(@"Drawing\Платформа.png", this) { X = 1, Y = 480-17, SpeedX = 2, SpeedY = 0, BorderBehaviour = BorderBehaviour.StopAtBorder};
 
         }
 

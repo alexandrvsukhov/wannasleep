@@ -15,7 +15,8 @@ namespace SimpleDrawer
         public double SpeedX { get; set; }
         public double SpeedY { get; set; }
         private int _previousTime;
-        
+        public int HeightLimit { get; set; }
+        public int WidthLimit { get; set; }
 
         public override void Draw(int time)
         {
@@ -37,18 +38,18 @@ namespace SimpleDrawer
         {
             if (BorderBehaviour == BorderBehaviour.BounceFromBorder)
             {
-                 if (X >= 640 - Width || X <= 0)
+                 if (X >= WidthLimit - Width || X <= 0)
                     SpeedX = SpeedX * -1;
             }
                 
             else
             {
-                if (X >= 640-Width && SpeedX > 0)
+                if (X >= WidthLimit - Width && SpeedX > 0)
                     SpeedX = 0;
                 if (X <= 0 && SpeedX < 0)
                     SpeedX = 0;
             }
-            if (Y >= 480 - Height || Y <= 0)
+            if (Y >= HeightLimit - Height || Y <= 0)
             {
                 if (BorderBehaviour == BorderBehaviour.BounceFromBorder)
                 {

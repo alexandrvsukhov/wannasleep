@@ -29,7 +29,7 @@ namespace SimpleDrawer
         
         //int speedballY = rnd.Next();
 
-        public MainWindow()
+        public MainWindow() : base(1280, 720)
         {
             InitializeComponent();
             InitGame();
@@ -40,7 +40,7 @@ namespace SimpleDrawer
             _mainLoopTimer.Stop();
             _ready = false;
             var element = sender as SpeedVisualElement;
-            if (element.Y < 240) _topPlayerScore += 1;
+            if (element.Y < Bitmap.PixelHeight / 2 ) _topPlayerScore += 1;
             else _bottomPlayerScore += 1;
             element.Scored -= Ball_Scored;
             InitGame();            
@@ -48,16 +48,39 @@ namespace SimpleDrawer
 
         private void InitGame()
         {
+            var width = Bitmap.PixelWidth;
+            var height = Bitmap.PixelHeight;
             time = 0;
             elements = new VisualElement[3];
             // Платформа 1
-            elements[0] = new SpeedVisualElement(@"Drawing\Платформа.png", this) { X = 320 - 168, Y = 1, SpeedY = 0, BorderBehaviour = BorderBehaviour.StopAtBorder };
+            elements[0] = new SpeedVisualElement(@"Drawing\Платформа.png", this) {
+                X = Bitmap.PixelWidth / 2 - 128,
+                Y = 16,
+                SpeedY = 0,
+                BorderBehaviour = BorderBehaviour.StopAtBorder,
+                HeightLimit = height,
+                WidthLimit = width,
+            };
             // Шарик
-            var ball = new CollidbleVisualElement(@"Drawing\green.png", this) { X = 320, Y = 240, SpeedX = 3 * (rnd.Next(9) > 4 ? 1 : -1), SpeedY = 3 * (rnd.Next(9) > 4 ? 1 : -1), BorderBehaviour = BorderBehaviour.BounceFromBorder };
+            var ball = new CollidbleVisualElement(@"Drawing\green.png", this) {
+                X = Bitmap.PixelWidth / 2 -32,
+                Y = Bitmap.PixelHeight / 2 - 32,
+                SpeedX = 3 * (rnd.Next(9) > 4 ? 1 : -1),
+                SpeedY = 3 * (rnd.Next(9) > 4 ? 1 : -1),
+                BorderBehaviour = BorderBehaviour.BounceFromBorder,
+                HeightLimit = height,
+                WidthLimit = width,
+            };
             elements[1] = ball;
 
             // Платформа 2
-            elements[2] = new SpeedVisualElement(@"Drawing\Платформа.png", this) { X = 320 - 168, Y = 480 - 17, SpeedY = 0, BorderBehaviour = BorderBehaviour.StopAtBorder };
+            elements[2] = new SpeedVisualElement(@"Drawing\Платформа.png", this) {
+                X = Bitmap.PixelWidth / 2 - 128,
+                Y = Bitmap.PixelHeight - 32,
+                SpeedY = 0, BorderBehaviour = BorderBehaviour.StopAtBorder,
+                HeightLimit = height,
+                WidthLimit = width,
+            };
 
             ball.Scored += Ball_Scored;
             _mainLoopTimer.Start();
